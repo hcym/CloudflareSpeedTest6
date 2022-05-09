@@ -134,7 +134,7 @@ func endPrint() {
 func checkUpdate() {
 	timeout := 10 * time.Second
 	client := http.Client{Timeout: timeout}
-	res, err := client.Get("https://api.xiu2.xyz/ver/cloudflarespeedtest.txt")
+	res, err := client.Get("https://raw.githubusercontents.com/Misaka-blog/CloudflareSpeedTest/master/ver.txt")
 	if err != nil {
 		return
 	}
