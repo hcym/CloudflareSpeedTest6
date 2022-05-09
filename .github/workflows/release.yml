@@ -106,12 +106,12 @@ jobs:
       - name: Build XrayR
         run: |
           mkdir -p build_assets
-          go build -v -o build_assets/CloudflareSpeedtest -trimpath -ldflags "-s -w -buildid=" ./main
+          go build -v -o build_assets/CloudflareSpeedtest -trimpath -ldflags "-s -w -buildid=" main.go
     
       - name: Build Mips softfloat XrayR
         if: matrix.goarch == 'mips' || matrix.goarch == 'mipsle'
         run: |
-          GOMIPS=softfloat go build -v -o build_assets/CloudflareSpeedtest_softfloat -trimpath -ldflags "-s -w -buildid=" ./main
+          GOMIPS=softfloat go build -v -o build_assets/CloudflareSpeedtest_softfloat -trimpath -ldflags "-s -w -buildid=" main.go
       - name: Rename Windows XrayR
         if: matrix.goos == 'windows'
         run: |
