@@ -22,7 +22,7 @@ func init() {
 	var help = `
 CloudflareSpeedTest ` + version + `
 测试 Cloudflare CDN 所有 IP 的延迟和速度，获取最快 IP (IPv4+IPv6)！
-https://github.com/XIU2/CloudflareSpeedTest
+本版本为Misaka-blog优化版，项目地址：https://github.com/Misaka-blog/CloudflareSpeedTest
 
 参数：
     -n 200
@@ -68,7 +68,7 @@ https://github.com/XIU2/CloudflareSpeedTest
 	flag.IntVar(&minDelay, "tll", 0, "平均延迟下限")
 	flag.IntVar(&downloadTime, "dt", 10, "下载测速时间")
 	flag.IntVar(&task.TestCount, "dn", 10, "下载测速数量")
-	flag.StringVar(&task.URL, "url", "https://cf.xiu2.xyz/url", "下载测速地址")
+	flag.StringVar(&task.URL, "url", "https://download.parallels.com/desktop/v17/17.1.1-51537/ParallelsDesktop-17.1.1-51537.dmg", "下载测速地址")
 	flag.BoolVar(&task.Disable, "dd", false, "禁用下载测速")
 	flag.BoolVar(&task.IPv6, "ipv6", false, "启用IPv6")
 	flag.BoolVar(&task.TestAll, "allip", false, "测速全部 IP")
@@ -92,7 +92,7 @@ https://github.com/XIU2/CloudflareSpeedTest
 		fmt.Println("检查版本更新中...")
 		checkUpdate()
 		if versionNew != "" {
-			fmt.Printf("*** 发现新版本 [%s]！请前往 [https://github.com/XIU2/CloudflareSpeedTest] 更新！ ***", versionNew)
+			fmt.Printf("*** 发现新版本 [%s]！请前往 [https://github.com/Misaka-blog/CloudflareSpeedTest] 更新！ ***", versionNew)
 		} else {
 			fmt.Println("当前为最新版本 [" + version + "]！")
 		}
@@ -104,7 +104,7 @@ func main() {
 	go checkUpdate()    // 检查版本更新
 	task.InitRandSeed() // 置随机数种子
 
-	fmt.Printf("# XIU2/CloudflareSpeedTest %s \n\n", version)
+	fmt.Printf("# Misaka-blog CloudflareSpeedTest 优化版 %s \n\n", version)
 
 	// 开始延迟测速
 	pingData := task.NewPing().Run().FilterDelay()
@@ -114,7 +114,7 @@ func main() {
 	speedData.Print(task.IPv6)
 
 	if versionNew != "" {
-		fmt.Printf("\n*** 发现新版本 [%s]！请前往 [https://github.com/XIU2/CloudflareSpeedTest] 更新！ ***\n", versionNew)
+		fmt.Printf("\n*** 发现新版本 [%s]！请前往 [https://github.com/Misaka-blog/CloudflareSpeedTest] 更新！ ***\n", versionNew)
 	}
 	endPrint()
 }
