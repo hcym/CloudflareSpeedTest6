@@ -30,4 +30,4 @@
     "windows-386": { "friendlyName": "windows-32" },
     "windows-amd64": { "friendlyName": "windows-64" },
     "windows-arm7": { "friendlyName": "windows-arm32-v7a" }
-  }
+}
