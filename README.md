@@ -25,19 +25,13 @@
 
 以下命令仅为示例，版本号和文件名请前往 [**Releases**](https://github.com/Misaka-blog/CloudflareSpeedTest/releases) 查看。
 
-``` yaml
+```shell
 mkdir CFSpeedTest
-
 cd CFSpeedTest
-
 wget -N https://download.fastgit.org/Misaka-blog/CloudflareSpeedTest/releases/download/v2.0.3.4/CFSpeedTest-linux-64.zip
-
 unzip CFSpeedTest-linux-64.zip
-
 chmod +x CFSpeedTest
-
 ./CFSpeedTest
-
 ./CFSpeedTest -dd -tll 90
 ```
 
@@ -88,6 +82,12 @@ IP 地址, 已发送, 已接收, 丢包率, 平均延迟, 下载速度 (MB/s)
 ```
 
 > _大家可以按自己需求，对完整结果**进一步筛选处理**，或者去看一看进阶使用**指定过滤条件**！_
+
+### 节点使用
+
+这里以vmess节点为例，替换地址栏内的地址为优选IP即可
+
+![image](https://user-images.githubusercontent.com/96560028/173249337-a0f58bb0-317f-4032-88b6-c106841b95c1.png)
 
 ****
 ## 进阶使用方法
