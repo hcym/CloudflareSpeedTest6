@@ -3,8 +3,6 @@ package main
 import (
 	"flag"
 	"fmt"
-	"io/ioutil"
-	"net/http"
 	"os"
 	"runtime"
 	"time"
@@ -13,17 +11,14 @@ import (
 	"CloudflareSpeedTest/utils"
 )
 
-var (
-	version, versionNew string
-)
+var version string = "2.0.3.4"
 
 func init() {
 	var printVersion bool
 	var help = `
 CloudflareSpeedTest ` + version + `
-测试 Cloudflare CDN 所有 IP 的延迟和速度，获取最快 IP (IPv4+IPv6)！
+测试 Cloudflare CDN 所有 IP 的延迟和速度，获取最快且最优质的 CF IP (IPv4+IPv6)！
 本版本为Misaka-blog优化版，项目地址：https://github.com/Misaka-blog/CloudflareSpeedTest
-
 参数：
     -n 200
         测速线程数量；越多测速越快，性能弱的设备 (如路由器) 请勿太高；(默认 200 最多 1000)
@@ -88,20 +83,12 @@ CloudflareSpeedTest ` + version + `
 	task.Timeout = time.Duration(downloadTime) * time.Second
 
 	if printVersion {
-		println(version)
-		fmt.Println("检查版本更新中...")
-		checkUpdate()
-		if versionNew != "" {
-			fmt.Printf("*** 发现新版本 [%s]！请前往 [https://github.com/Misaka-blog/CloudflareSpeedTest] 更新！ ***", versionNew)
-		} else {
-			fmt.Println("当前为最新版本 [" + version + "]！")
-		}
+		println("当前Misaka-blog CloudflareSpeedTest 优化版的版本为：", version)
 		os.Exit(0)
 	}
 }
 
 func main() {
-	go checkUpdate()    // 检查版本更新
 	task.InitRandSeed() // 置随机数种子
 
 	fmt.Printf("# Misaka-blog CloudflareSpeedTest 优化版 %s \n\n", version)
@@ -113,9 +100,6 @@ func main() {
 	utils.ExportCsv(speedData)
 	speedData.Print(task.IPv6)
 
-	if versionNew != "" {
-		fmt.Printf("\n*** 发现新版本 [%s]！请前往 [https://github.com/Misaka-blog/CloudflareSpeedTest] 更新！ ***\n", versionNew)
-	}
 	endPrint()
 }
 
@@ -127,25 +111,5 @@ func endPrint() {
 		fmt.Printf("按下 回车键 或 Ctrl+C 退出。")
 		var pause int
 		fmt.Scanln(&pause)
-	}
-}
-
-// 检查更新
-func checkUpdate() {
-	timeout := 10 * time.Second
-	client := http.Client{Timeout: timeout}
-	res, err := client.Get("https://raw.githubusercontents.com/Misaka-blog/CloudflareSpeedTest/master/ver.txt")
-	if err != nil {
-		return
-	}
-	// 读取资源数据 body: []byte
-	body, err := ioutil.ReadAll(res.Body)
-	if err != nil {
-		return
-	}
-	// 关闭资源流
-	defer res.Body.Close()
-	if string(body) != version {
-		versionNew = string(body)
 	}
 }
