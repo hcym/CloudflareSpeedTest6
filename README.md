@@ -23,7 +23,7 @@ cd CFSpeedTest
 
 wget -N https://download.fastgit.org/Misaka-blog/CloudflareSpeedTest/releases/download/v2.0.3.4/CFSpeedTest-linux-64.zip
 
-tar -zxf CFSpeedTest_linux_amd64.tar.gz
+unzip CFSpeedTest-linux-64.zip
 
 chmod +x CFSpeedTest
 
