@@ -1,4 +1,4 @@
-# Misaka-blog CloudFlareSpeedTest 优化魔改版
+# Misaka-blog CloudFlareSpeedTest 优化魔改6版
 
 由于项目原作者XIU2对于我的建设性建议迟迟不采纳，造成大部分人优选IP很容易分配到被墙的CF IP段。故我在此fork了他的项目并且优化了下他的优选IP脚本，力争使得大家使用更方便！
 
